@@ -1,0 +1,7 @@
+.get(function(req,res){
+		Quote.find({book:"h2g2"},function(err, quotes){
+			if (err) res.send(err);
+
+			res.json(quotes);
+		});
+	});
