@@ -99,12 +99,29 @@ apiRouter.route('/quotes/tag/:tag')
 		})
 	});
 
+apiRouter.route('/quotes/tags')
+	.get(function(req,res){
+		Quote.distinct('tags').exec(function(err, tags){
+			if (err) res.send(err);
+
+			res.json(tags);
+		})
+	});
+
 apiRouter.route('/quotes/book/:book')
 	.get(function(req,res){
 		Quote.find({book: req.params.book}, function(err, quotes){
 			if (err) res.send(err);
 
 			res.json(quotes)
+		})
+	});
+apiRouter.route('/quotes/books')
+	.get(function(req,res){
+		Quote.distinct("book").exec(function(err, books){
+			if (err) res.send(err);
+
+			res.json(books);
 		})
 	});
 

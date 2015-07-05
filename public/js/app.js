@@ -22,6 +22,34 @@ app.factory('Quotes', function($http, $q){
 				.error(def.reject);
 			return def.promise
 		},
+		getTags : function(){
+			var def = $q.defer();
+			$http.get(url + '/tags')
+				.success(def.resolve)
+				.error(def.reject);
+			return def.promise
+		},
+		getQuoteByTag : function(tagio){
+			var def = $q.defer();
+			$http.get(url + '/tag/'+ tagio)
+				.success(def.resolve)
+				.error(def.reject);
+			return def.promise
+		},
+		getBooks : function(){
+			var def = $q.defer();
+			$http.get(url + '/books')
+				.success(def.resolve)
+				.error(def.reject);
+			return def.promise
+		},
+		getQuoteByBook : function(bookio){
+			var def = $q.defer();
+			$http.get(url + '/book/' + bookio)
+				.success(def.resolve)
+				.error(def.reject);
+			return def.promise
+		},
 		postQuote: function(model){
 			var def = $q.defer();
 			$http.post(url, model)
@@ -32,6 +60,8 @@ app.factory('Quotes', function($http, $q){
 	}
 });
 
+ // -------------CONTROLLERS---------------------------------
+
 app.controller('getQuoteCtrl', function($q, $scope, Quotes){
 	console.log("in get")
 
@@ -40,25 +70,56 @@ app.controller('getQuoteCtrl', function($q, $scope, Quotes){
 		// console.log($scope.quotes);
 	});
 
+});
 
+app.controller('getTagsCtrl', function($q, $scope, Quotes){
+	console.log("in all tags");
+
+	Quotes.getTags().then(function(res){
+		$scope.tags = res;
+		console.log("tags: "+ $scope.tags)
+	});
+
+	$scope.getQuoteByTag = function(){
+		Quotes.getQuoteByTag($scope.tag).then(function(data){
+			$scope.quotes = data;
+			console.log("by tags: "+ $scope.tag)
+		});
+	};
+});
+
+app.controller('getBooksCtrl', function($q, $scope, Quotes){
+	console.log("in the books");
+
+	Quotes.getBooks().then(function(res){
+		$scope.books = res
+		console.log("books: " + $scope.books)
+	});
+
+	$scope.getQuoteByBook = function(){
+		Quotes.getQuoteByBook($scope.book).then(function(data){
+			$scope.quotes = data;
+			console.log("by books :" + $scope.book)
+		})
+	}
 });
 
 app.controller('getQuoteRandomCtrl', function($q, $scope, Quotes){
-	console.log("in get tag")
 
 	Quotes.getQuoteRandom().then(function(res){
 		$scope.quote = res;
 		// $scope.tag = tag;
-		console.log($scope.quote);
+		console.log("RANDOM: " + $scope.quote);
 	});
 
 	$scope.getQuoteRandom = function(){
 		Quotes.getQuoteRandom().then(function(data){
 			$scope.quote = data;
-			console.log("function: " + data)
+			console.log("function: " + $scope.quote)
 		});
 	};
 });
+
 
 
 app.controller('postQuoteCtrl', function($scope, Quotes){
