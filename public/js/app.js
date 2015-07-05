@@ -4,7 +4,7 @@ var app = angular.module('dnaApp', ['ui.router', 'ngRoute'])
 console.log("in app");
 
 app.factory('Quotes', function($http, $q){
-	var url = 'http://localhost:8080/api/quotes';
+	var url = 'http://localhost:8080/api/v1/quotes';
 
 	return{
 		getQuote: function(){

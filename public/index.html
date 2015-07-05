@@ -37,7 +37,7 @@
 	
 </div>
 
-<div class="tags" ng-controller="getTagsCtrl as tags">
+<div  ng-controller="getTagsCtrl as tags">
 	<select id="tags" ng-change="getQuoteByTag()" ng-model="tag" ng-options="tag for tag in tags" >
         <option value="">---Select a Tag---</option>
       </select>	
@@ -64,7 +64,7 @@
 </div>
 
 
-<div ng-controller="getQuoteCtrl as quotes">
+<!-- <div ng-controller="getQuoteCtrl as quotes">
 	<div class="quote" ng-repeat="quote in quotes">
 		<h3>Quote: {{ quote.words }}</h3>
 		<h5>Book: {{ quote.book }}</h5>
@@ -73,7 +73,7 @@
 			<h5>{{ tag }}</h5>
 		</div>
 	</div>	
-</div>
+</div> -->
 
 <style>
 	.random, .tagQuote, .bookQuote {

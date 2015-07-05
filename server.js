@@ -138,7 +138,7 @@ apiRouter.route('/quotes/random')
 	});
 
 // register routes
-app.use('/api', apiRouter);
+app.use('/api/v1', apiRouter);
 //start server
 app.listen(port);
 console.log("the magic happens on port: "+ port);
