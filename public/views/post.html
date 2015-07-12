@@ -1,0 +1,12 @@
+
+<h3>Testing the Post!</h3>
+<div ng-app="dnaApp">
+	<div class="posting" ng-controller="postQuoteCtrl">
+		<form ng-submit="addNew()">
+		<input type="text" ng-model="quote.words">
+		<input type="text" ng-model="quote.book">
+		<input type="text" ng-model="quote.tags" ng-list>
+		<input type="submit"  value="send quote">
+		</form>
+	</div>
+</div>

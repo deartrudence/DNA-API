@@ -3,6 +3,21 @@ var app = angular.module('dnaApp', ['ui.router', 'ngRoute'])
 
 console.log("in app");
 
+app.config(function($stateProvider){
+	console.log("in state")
+	$stateProvider
+		.state('index', {
+			url: '',
+			controller: 'getQuoteCtrl',
+			templateUrl: '../views/quotes.html'
+		})
+		.state('posting', {
+			url: '/posting',
+			controller: 'postQuoteCtrl',
+			templateUrl: '../views/post.html'
+		})
+});
+
 app.factory('Quotes', function($http, $q){
 	var url = 'http://localhost:8080/api/v1/quotes';
 
@@ -123,7 +138,7 @@ app.controller('getQuoteRandomCtrl', function($q, $scope, Quotes){
 
 
 app.controller('postQuoteCtrl', function($scope, Quotes){
-
+	console.log("in post controller")
 	$scope.addNew = function(){
 		console.log("am i positng?")
 

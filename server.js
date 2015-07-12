@@ -7,9 +7,11 @@ var bodyParser		= require('body-parser');
 var morgan			= require('morgan');
 var mongoose		= require('mongoose');
 var random 			= require('mongoose-random');
-var port 			= process.env.PORT || 8080;
+var port 			= process.env.PORT || 8080 ;
 
 var Quote			= require('./app/models/quote')
+
+var path = require("path");
 
 // App Configuration
 
@@ -34,6 +36,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', function(req, res){
 	res.sendFile(path.join(__dirname + '/index.html'));
 });
+app.get('/post', function(req, res){
+	res.sendFile(path.join(__dirname + '/public/views/post.html'));
+});
 
 //connect to database
 mongoose.connect('localhost:27017/apiDatabase')
@@ -47,12 +52,12 @@ mongoose.connect('localhost:27017/apiDatabase')
 //get instance of express router
 var apiRouter = express.Router();
 
-//middleware to user for all requests
-// apiRouter.use(function(req,res,next){
-// 	//do loggin
-// 	console.log("somebody came to our app!");
-// 	next();
-// });
+// middleware to user for all requests
+apiRouter.use(function(req,res,next){
+	//do loggin
+	console.log("somebody came to our app!");
+	next();
+});
 
 //test route
 // apiRouter.get('/', function(req,res){
