@@ -41,7 +41,7 @@ app.get('/post', function(req, res){
 });
 
 //connect to database
-mongoose.connect('localhost:27017/apiDatabase')
+mongoose.connect(process.env.MONGOLAB_URI || 'localhost:27017/apiDatabase')
 
 //Routes for API
 
