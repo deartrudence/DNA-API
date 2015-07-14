@@ -4,6 +4,7 @@
 		</div>
 	<div class="random" ng-repeat="q in quote">
 		<h3>{{q.words}}</h3>
+		<p>- {{q.book}}</p>
 	</div>
 	
 </div>
@@ -17,7 +18,8 @@
 
       <div ng-repeat="quote in quotes">
       	<div class="tagQuote">
-      		<h3>Tag Quote: {{quote.words}}</h3>
+      		<h3>{{quote.words}}</h3>
+      		<p>- {{quote.book}}</p>
       	</div>
       </div>
 </div>
@@ -31,7 +33,8 @@
 
       <div ng-repeat="quote in quotes">
       	<div class="bookQuote">
-      		<h3>Book Quote: {{quote.words}}</h3>
+      		<h3>{{quote.words}}</h3>
+      		<p>- {{quote.book}}</p>
       	</div>
       </div>
 </div>
