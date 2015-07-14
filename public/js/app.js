@@ -19,7 +19,7 @@ app.config(function($stateProvider){
 });
 
 app.factory('Quotes', function($http, $q){
-	var url = 'http://localhost:8080/api/v1/quotes';
+	var url = 'https://elegant-madame-7790.herokuapp.com/api/v1/quotes';
 
 	return{
 		getQuote: function(){
