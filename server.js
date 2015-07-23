@@ -96,8 +96,9 @@ apiRouter.route('/quotes')
 
 apiRouter.route('/quotes/tag/:tag')
 	.get(function(req,res){
-		// var theTag = req.param.tag;
-		Quote.find({tags:{$all:[req.params.tag]}}, function(err, quotes){
+		var theTag = req.param('tag');
+		var theTags = theTag.split('&');
+		Quote.find({tags:{$all:theTags}}, function(err, quotes){
 		if (err) res.send(err);
 
 		res.json(quotes);
@@ -128,6 +129,17 @@ apiRouter.route('/quotes/books')
 
 			res.json(books);
 		})
+	});
+
+apiRouter.route('/quotes/id/:id')
+	.get(function(req,res){
+		var q_id = mongoose.Types.ObjectId(req.params.id);
+		Quote.find({_id: q_id}, function(err, quotes){
+			if (err) res.send(err);
+
+			res.json(quotes)
+		})
+		console.log("REQ"+ req.params)
 	});
 
 apiRouter.route('/quotes/random')
