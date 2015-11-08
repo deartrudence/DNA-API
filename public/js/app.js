@@ -93,6 +93,7 @@ app.controller('getTagsCtrl', function($q, $scope, Quotes){
 	Quotes.getTags().then(function(res){
 		$scope.tags = res;
 		console.log("tags: "+ $scope.tags)
+		$scope.quotes = [];
 	});
 
 	$scope.getQuoteByTag = function(){
@@ -105,10 +106,12 @@ app.controller('getTagsCtrl', function($q, $scope, Quotes){
 
 app.controller('getBooksCtrl', function($q, $scope, Quotes){
 	console.log("in the books");
+	console.log($scope.quotes)
 
 	Quotes.getBooks().then(function(res){
 		$scope.books = res
 		console.log("books: " + $scope.books)
+		$scope.quotes = [];
 	});
 
 	$scope.getQuoteByBook = function(){
